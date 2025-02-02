@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <ctype.h>  
+
+int main() {
+    char str[100];
+    int start = 0, end = 0;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    str[strcspn(str, "\n")] = '\0';
+
+    while (str[end] != '\0') {
+        end++;
+    }
+    end--;  
+
+    while (start < end) {
+      
+        if (str[start] == ' ') {
+            start++;
+            continue;
+        }
+        if (str[end] == ' ') {
+            end--;
+            continue;
+        }
+
+        if (tolower(str[start]) != tolower(str[end])) {
+            printf("The string is not a palindrome.\n");
+            return 0; 
+        }
+
+        start++;
+        end--;
+    }
+
+    // If the loop completes, it's a palindrome
+    printf("The string is a palindrome.\n");
+
+    return 0;
+}
